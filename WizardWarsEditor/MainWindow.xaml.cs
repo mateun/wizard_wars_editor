@@ -51,6 +51,7 @@ namespace WizardWarsEditor
         public MainWindow()
         {
             InitializeComponent();
+            MapPanel.OnCellSelected += MapPanel_OnCellSelected;
             mapHost.DrawScale = g_Scale;
             this.DataContext = this;
             CurrentLayer = "0";
@@ -81,6 +82,11 @@ namespace WizardWarsEditor
           
             MapCanvas.Children.Add(mapHost);
 
+        }
+
+        private void MapPanel_OnCellSelected(Vector selectedCell)
+        {
+            lblMapPositionSelected.Text = selectedCell.X + "/" + selectedCell.Y;
         }
 
         private void MenuItemNewMap_Click(object sender, RoutedEventArgs e)
