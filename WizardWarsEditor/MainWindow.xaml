@@ -96,9 +96,9 @@
             </ListView>
 
         </Grid>
-        <Grid DockPanel.Dock="Left" Name="MapAreaGrid" Width="900" Background="DarkGray" HorizontalAlignment="Left">
+        <Grid DockPanel.Dock="Left" Name="MapAreaGrid" Width="900" Background="DarkGray" HorizontalAlignment="Left" MouseUp="MapAreaGrid_MouseUp">
 
-            <Canvas Name="MapCanvas">
+            <Canvas Name="MapCanvas" MouseUp="MapCanvas_MouseUp">
                 
             </Canvas>
             <!--<Viewport3D>

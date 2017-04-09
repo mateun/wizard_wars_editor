@@ -129,5 +129,15 @@ namespace WizardWarsEditor
             mapPanel.ShowDebugLines = _showDebugLines;
             mapPanel.RenderContent();
         }
+
+        private void MapCanvas_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            mapPanel.MapMouseHandler(sender, e);
+        }
+
+        private void MapAreaGrid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            mapPanel.MapMouseHandler(sender, e);
+        }
     }
 }
