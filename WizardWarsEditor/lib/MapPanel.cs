@@ -35,11 +35,14 @@ namespace WizardWarsEditor.lib
 
         int cellCursorX = 0;
         int cellCursorY = 0;
+        int drawCursorX = 0;
+        int drawCursorY = 0;
         GameMap gameMap;
         Collection<TileDescription> tileDescriptions = null;
         Dictionary<string, BitmapImage> imageDict = null;
-        Vector scrollOffset = new Vector(0, 0);
-        
+        int cellScrollOffsetX = 0;
+        int cellScrollOffsetY = 0;
+
         /// <summary>
         /// This class represents the map area where the user manipulates the game map. 
         /// He can add/update/remove tiles on the map, 
@@ -86,10 +89,10 @@ namespace WizardWarsEditor.lib
         {
             switch (input)
             {
-                case (ScrollInput.LEFT): scrollOffset.X = scrollOffset.X - (rr * 2) * DrawScale;break;
-                case (ScrollInput.RIGHT): scrollOffset.X = scrollOffset.X + (rr * 2) * DrawScale; break;
-                case (ScrollInput.UP): scrollOffset.Y = scrollOffset.Y - (h + s) * DrawScale; break;
-                case (ScrollInput.DOWN): scrollOffset.Y = scrollOffset.Y + (h + s) * DrawScale; break;
+                case (ScrollInput.LEFT): cellScrollOffsetX--; break;
+                case (ScrollInput.RIGHT): cellScrollOffsetX++; break;
+                case (ScrollInput.UP): cellScrollOffsetY++;break;
+                case (ScrollInput.DOWN): cellScrollOffsetY--; break;
 
             }
         }
@@ -98,24 +101,25 @@ namespace WizardWarsEditor.lib
         {
             DrawingVisual mapBackground = (DrawingVisual)_visuals[0];
             DrawingContext drawingContext = mapBackground.RenderOpen();
-            mapBackground.Offset = scrollOffset;
-
+            
             drawingContext.PushClip(new RectangleGeometry(new Rect(00, 00, 850, 700)));
 
             BitmapImage image = new BitmapImage(new Uri(Environment.CurrentDirectory + "/assets/images/grass16x16.png"));
-            
-            for (int row = 0; row < gameMap.Height; row++)
-            {
-                int v = row & 1;
 
-                for (int i = 0; i < gameMap.Width; i += 1)
+            // The idea here is to render only a specific window of the game map, not more than 20x20 cells.
+            
+            for (int row = 0; row < 20; row++)
+            {
+                for (int i = 0; i < 20; i += 1)
                 {
-                    TileDescription tileDescription = gameMap.Tile(0, i, row);
+                    int cellX = i + cellScrollOffsetX;
+                    int cellY = row + cellScrollOffsetY;
+                    TileDescription tileDescription = gameMap.Tile(0, cellX, cellY);
                     if (tileDescription == null)
                         continue;
                     Rect rect = new Rect()
                     {
-                        X = i * 2 * DrawScale * rr + (row & 1) * rr * DrawScale,
+                        X = i * 2 * DrawScale * rr + (cellY & 1) * rr * DrawScale,
                         Width = 16 * DrawScale,
                         Y = row * (h + s) * DrawScale,
                         Height = 16 * DrawScale
@@ -135,8 +139,9 @@ namespace WizardWarsEditor.lib
             }
 
             // Draw the cursor
-            int cursorPixelX = (int) (cellCursorX * 2 * DrawScale * rr + (cellCursorY & 1) * rr * DrawScale);
-            int cursorPixelY = (int)(cellCursorY * (h + s) * DrawScale);
+            int rowInfo = drawCursorY + cellScrollOffsetY;
+            int cursorPixelX = (int) ((drawCursorX) * 2 * DrawScale * rr + ((rowInfo) & 1) * rr * DrawScale);
+            int cursorPixelY = (int)((drawCursorY) * (h + s) * DrawScale);
             System.Console.WriteLine("cursorPixel: " + cursorPixelX + "/" + cursorPixelY);
             Rect rectCursor = new Rect()
             {
@@ -160,11 +165,11 @@ namespace WizardWarsEditor.lib
         public void MapMouseHandler(object sender, MouseButtonEventArgs e)
         {
             Point pos = e.GetPosition(this);
-            pos.X -= scrollOffset.X;
-            pos.Y -= scrollOffset.Y;
             
             int sectX = (int)(pos.X / (2 * rr * DrawScale));
             int sectY = (int)(pos.Y / ((h + s) * DrawScale));
+            sectX += cellScrollOffsetX;
+            sectY += cellScrollOffsetY;
 
             int sectPixelX = (int)(pos.X % (2 * rr * DrawScale));
             int sectPixelY = (int)(pos.Y % ((h + s) * DrawScale));
@@ -227,6 +232,10 @@ namespace WizardWarsEditor.lib
                     }
                 }
             }
+
+            // Apply the scrolling offset
+            drawCursorX = cellCursorX - cellScrollOffsetX;
+            drawCursorY = cellCursorY - cellScrollOffsetY;
 
             // Normalize cell selection 
             cellCursorX = Math.Max(0, cellCursorX);

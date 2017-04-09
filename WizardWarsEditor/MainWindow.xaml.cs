@@ -69,6 +69,10 @@ namespace WizardWarsEditor
 
             // Test
             gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 5, 5, 0);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 7, 13, 0);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 7, 12, 0);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 12, 14, 0);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 32, 14, 0);
             // Test end
 
             mapPanel = new MapPanel(g_Scale, gameMap, tileListPanel.LayerTiles);

@@ -34,7 +34,10 @@ namespace WizardWarsEditor.lib
 
         public TileDescription Tile(int layerIndex, int x, int y)
         {
-            return layers[layerIndex][x,y];
+            if (x < Width && y < Height && y >= 0 && x >= 0)
+                return layers[layerIndex][x, y];
+            else
+                return null;
         }
 
         public void FillLayer(TileDescription td, int layerIndex)
