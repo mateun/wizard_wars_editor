@@ -27,9 +27,12 @@ namespace WizardWarsEditor
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private float g_Scale = 3;
-        private MapPanel mapPanel = null; 
-        
+        private MapPanel mapPanel = null;
+        private GameMap gameMap = null;
+
+
         private bool _showDebugLines = false;
+        private bool drawModeActive = false;
         
         public string DebugInfo { get; set; }
         public string CurrentLayer { get; set; }
@@ -51,10 +54,9 @@ namespace WizardWarsEditor
         public MainWindow()
         {
             InitializeComponent();
-            GameMap gameMap = new GameMap(10, 10, 3);
+            gameMap = new GameMap(10, 10, 3);
             
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
-            
             
             CurrentLayer = "0";
             CurrentTile = "grass";
@@ -71,7 +73,16 @@ namespace WizardWarsEditor
 
             mapPanel = new MapPanel(g_Scale, gameMap, tileListPanel.LayerTiles);
             MapCanvas.Children.Add(mapPanel);
+            TileListView.SelectionChanged += TileListView_SelectionChanged;
 
+        }
+
+        private void TileListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+                mapPanel.ActiveTileDescription = (TileDescription)e.AddedItems[0];
+            else
+                mapPanel.ActiveTileDescription = null;
         }
 
         private void MapPanel_OnCellSelected(Vector selectedCell)
@@ -84,6 +95,11 @@ namespace WizardWarsEditor
 
         }
         
+        private void DrawMode_Click(object sender, RoutedEventArgs e)
+        {
+            drawModeActive = !drawModeActive;
+            mapPanel.DrawModeActive = drawModeActive;
+        }
 
         private void ZoomPlus_Click(object sender, RoutedEventArgs e)
         {

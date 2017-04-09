@@ -44,6 +44,9 @@
                 <ToggleButton ToolTip="Show debug lines" Click="ShowDebugLines_Click" >
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/debugLines16x16.png"/>
                 </ToggleButton>
+                <ToggleButton ToolTip="Draw mode, enables the placing of tiles" Content="DrawMode" Click="DrawMode_Click">
+                    
+                </ToggleButton>
             </ToolBar>
         </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom">
@@ -72,7 +75,8 @@
 
             </StackPanel>
             
-            <ListView Margin="10,10,0,10" Grid.Row="1" Name="TileListView" ItemsSource="{Binding LayerTiles}"  Width="300" Background="Gray" >
+            <ListView Margin="10,10,0,10" Grid.Row="1" Name="TileListView" ItemsSource="{Binding LayerTiles}" 
+                      Width="300" Background="Gray" SelectedIndex="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="64px" Header="Image">
