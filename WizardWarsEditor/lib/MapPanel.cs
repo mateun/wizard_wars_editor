@@ -26,6 +26,7 @@ namespace WizardWarsEditor.lib
         public float DrawScale { get; set; }
         public bool ShowDebugLines { get; set; }
         public bool DrawModeActive { get; set; }
+        public LayerDescription ActiveLayer { get; set; }
         public TileDescription ActiveTileDescription { get; set; }
 
         VisualCollection _visuals;
@@ -108,25 +109,29 @@ namespace WizardWarsEditor.lib
 
             // The idea here is to render only a specific window of the game map, not more than 20x20 cells.
             
-            for (int row = 0; row < 20; row++)
+            for (int l = 0; l < gameMap.NumberOfLayers(); l++)
             {
-                for (int i = 0; i < 20; i += 1)
+                for (int row = 0; row < 18; row++)
                 {
-                    int cellX = i + cellScrollOffsetX;
-                    int cellY = row + cellScrollOffsetY;
-                    TileDescription tileDescription = gameMap.Tile(0, cellX, cellY);
-                    if (tileDescription == null)
-                        continue;
-                    Rect rect = new Rect()
+                    for (int i = 0; i < 19; i += 1)
                     {
-                        X = i * 2 * DrawScale * rr + (cellY & 1) * rr * DrawScale,
-                        Width = 16 * DrawScale,
-                        Y = row * (h + s) * DrawScale,
-                        Height = 16 * DrawScale
-                    };
-                    drawingContext.DrawImage(imageDict[tileDescription.TileName], rect);
+                        int cellX = i + cellScrollOffsetX;
+                        int cellY = row + cellScrollOffsetY;
+                        TileDescription tileDescription = gameMap.Tile(l, cellX, cellY);
+                        if (tileDescription == null)
+                            continue;
+                        Rect rect = new Rect()
+                        {
+                            X = i * 2 * DrawScale * rr + (cellY & 1) * rr * DrawScale,
+                            Width = 16 * DrawScale,
+                            Y = row * (h + s) * DrawScale,
+                            Height = 16 * DrawScale
+                        };
+                        drawingContext.DrawImage(imageDict[tileDescription.TileName], rect);
+                    }
                 }
             }
+            
 
             if (ShowDebugLines)
             {
@@ -248,9 +253,9 @@ namespace WizardWarsEditor.lib
 
             // update the gameMap model object and set the currently active tile 
             // to the correct place.
-            if (DrawModeActive)
+            if (DrawModeActive && ActiveLayer != null)
             {
-                gameMap.SetTileForLayer(ActiveTileDescription, cellCursorX, cellCursorY, 0);
+                gameMap.SetTileForLayer(ActiveTileDescription, cellCursorX, cellCursorY, ActiveLayer.Number);
             }
 
             // Trigger redraw with potentially changed cursor

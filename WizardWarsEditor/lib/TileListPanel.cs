@@ -31,6 +31,19 @@ namespace WizardWarsEditor.lib
                 TileName = "Water",
                 TileImageSource = Environment.CurrentDirectory + "/assets/images/water16x16.png"
             });
+
+            LayerTiles.Add(new TileDescription()
+            {
+                TileName = "Rocks",
+                TileImageSource = Environment.CurrentDirectory + "/assets/images/rocks16x16.png"
+            });
+
+            LayerTiles.Add(new TileDescription()
+            {
+                TileName = "Gold",
+                TileImageSource = Environment.CurrentDirectory + "/assets/images/gold16x16.png"
+            });
+
             lv.ItemsSource = LayerTiles;
         }
 

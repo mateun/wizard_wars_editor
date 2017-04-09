@@ -63,6 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="lib\GameMap.cs" />
+    <Compile Include="lib\LayerDescription.cs" />
     <Compile Include="lib\MapPanel.cs" />
     <Compile Include="lib\TileDescription.cs" />
     <Compile Include="lib\TileListPanel.cs" />

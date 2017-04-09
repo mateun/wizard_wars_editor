@@ -35,8 +35,8 @@ namespace WizardWarsEditor
         private bool drawModeActive = false;
         
         public string DebugInfo { get; set; }
-        public string CurrentLayer { get; set; }
-        public string CurrentTile { get; set; }
+        public LayerDescription CurrentLayer { get; set; }
+        //public string CurrentTile { get; set; }
         public string ScrollOffset { get; set; }
         public string CurrentMapCoords { get; set; }
 
@@ -58,8 +58,8 @@ namespace WizardWarsEditor
             
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
             
-            CurrentLayer = "0";
-            CurrentTile = "grass";
+            CurrentLayer = null;
+            
             ScrollOffset = "0/0";
             CurrentMapCoords = "0/0";
             lblMapPositionSelected.Text = "0/0";
@@ -73,11 +73,35 @@ namespace WizardWarsEditor
             gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 7, 12, 0);
             gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 12, 14, 0);
             gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 32, 14, 0);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Gold"), 6, 8, 1);
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Rocks"), 10, 16, 1);
             // Test end
 
             mapPanel = new MapPanel(g_Scale, gameMap, tileListPanel.LayerTiles);
             MapCanvas.Children.Add(mapPanel);
             TileListView.SelectionChanged += TileListView_SelectionChanged;
+
+            // Init layer dropdown in toolbar
+            List<LayerDescription> layerDescriptions = new List<LayerDescription>();
+            layerDescriptions.Add(new LayerDescription()
+            {
+                LayerName = "Layer 0",
+                Number = 0
+            });
+
+            layerDescriptions.Add(new LayerDescription()
+            {
+                LayerName = "Layer 1",
+                Number = 1
+            });
+
+            layerDescriptions.Add(new LayerDescription()
+            {
+                LayerName = "Layer 2",
+                Number = 2
+            });
+
+            LayerCombo.ItemsSource = layerDescriptions;
 
         }
 
@@ -124,6 +148,16 @@ namespace WizardWarsEditor
             mapPanel.RenderContent();
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
+
+        }
+
+        private void Layer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            if (e.AddedItems.Count > 0)
+                CurrentLayer = (LayerDescription) e.AddedItems[0];
+
+            mapPanel.ActiveLayer = CurrentLayer;
 
         }
 

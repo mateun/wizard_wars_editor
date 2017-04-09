@@ -17,10 +17,12 @@
         </Menu>
         <ToolBarTray DockPanel.Dock="Top" AllowDrop="False">
             <ToolBar>
-                <ComboBox SelectedIndex="0" >
-                    <ComboBoxItem Content="Layer 0" />
-                    <ComboBoxItem Content="Layer 1"/>
-                    <ComboBoxItem Content="Layer 2"/>
+                <ComboBox SelectedIndex="0" Name="LayerCombo" SelectionChanged="Layer_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LayerName}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button Click="ScrollLeft_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/leftArrow16x16.png" ToolTip="Move map to the left"/>
@@ -74,9 +76,9 @@
                 <Label Content="{Binding CurrentMapCoords}" />
 
             </StackPanel>
-            
-            <ListView Margin="10,10,0,10" Grid.Row="1" Name="TileListView" ItemsSource="{Binding LayerTiles}" 
-                      Width="300" Background="Gray" SelectedIndex="0">
+
+            <ListView Margin="10,10,0,10" Grid.Row="1" Name="TileListView" 
+                Width="300" Background="Gray" SelectedIndex="0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="64px" Header="Image">

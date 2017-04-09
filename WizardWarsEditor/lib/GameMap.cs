@@ -11,10 +11,13 @@ namespace WizardWarsEditor.lib
         List<TileDescription[,]> layers;
         public int Width { get; set; }
         public int Height { get; set; }
+
+        private int numberOfLayers;
         
-        public GameMap(int mapWidth, int mapHeight, int numberOfLayers)
+        public GameMap(int mapWidth, int mapHeight, int numberOfLayersParam)
         {
             layers = new List<TileDescription[,]>();
+            numberOfLayers = numberOfLayersParam;
 
             Width = mapWidth;
             Height = mapHeight;
@@ -25,6 +28,11 @@ namespace WizardWarsEditor.lib
                 layers.Add(layer);
             }
             
+        }
+
+        public int NumberOfLayers()
+        {
+            return numberOfLayers;
         }
 
         public void SetTileForLayer(TileDescription td, int x, int y, int layerIndex)
