@@ -98,7 +98,7 @@
         </Grid>
         <Grid DockPanel.Dock="Left" Name="MapAreaGrid" Width="900" Background="DarkGray" HorizontalAlignment="Left" MouseUp="MapAreaGrid_MouseUp">
 
-            <Canvas Name="MapCanvas" MouseUp="MapCanvas_MouseUp">
+            <Canvas Name="MapCanvas">
                 
             </Canvas>
             <!--<Viewport3D>

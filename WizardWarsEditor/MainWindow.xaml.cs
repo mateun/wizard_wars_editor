@@ -130,11 +130,6 @@ namespace WizardWarsEditor
             mapPanel.RenderContent();
         }
 
-        private void MapCanvas_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            mapPanel.MapMouseHandler(sender, e);
-        }
-
         private void MapAreaGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             mapPanel.MapMouseHandler(sender, e);
