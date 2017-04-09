@@ -54,7 +54,7 @@ namespace WizardWarsEditor
         public MainWindow()
         {
             InitializeComponent();
-            gameMap = new GameMap(10, 10, 3);
+            gameMap = new GameMap(100, 100, 3);
             
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
             
