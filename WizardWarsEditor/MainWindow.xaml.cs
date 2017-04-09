@@ -28,6 +28,7 @@ namespace WizardWarsEditor
     {
         private MapPanel mapHost = new MapPanel();
         private float g_Scale = 3;
+        private bool _showDebugLines = false;
         
         public string DebugInfo { get; set; }
         public string CurrentLayer { get; set; }
@@ -92,7 +93,7 @@ namespace WizardWarsEditor
         {
             g_Scale++;
             mapHost.DrawScale = g_Scale;
-            mapHost.RenderContent(g_Scale);
+            mapHost.RenderContent(g_Scale, _showDebugLines);
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
             
@@ -102,10 +103,16 @@ namespace WizardWarsEditor
         {
             g_Scale--;
             mapHost.DrawScale = g_Scale;
-            mapHost.RenderContent(g_Scale);
+            mapHost.RenderContent(g_Scale, _showDebugLines);
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
 
+        }
+
+        private void ShowDebugLines_Click(object sender, RoutedEventArgs e)
+        {
+            _showDebugLines = !_showDebugLines;
+            mapHost.RenderContent(g_Scale, _showDebugLines);
         }
     }
 }
