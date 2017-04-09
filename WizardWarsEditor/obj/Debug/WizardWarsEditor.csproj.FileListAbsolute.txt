@@ -1,0 +1,14 @@
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\bin\Debug\WizardWarsEditor.exe.config
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\bin\Debug\WizardWarsEditor.exe
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\bin\Debug\WizardWarsEditor.pdb
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.csprojResolveAssemblyReference.cache
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\MainWindow.g.cs
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\App.g.cs
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor_MarkupCompile.cache
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor_MarkupCompile.lref
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\MainWindow.baml
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.g.resources
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.Properties.Resources.resources
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.csproj.GenerateResource.Cache
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.exe
+c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.pdb
