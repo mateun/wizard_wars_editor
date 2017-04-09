@@ -41,8 +41,8 @@
                 <Button Click="ZoomPlus_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/zoomPlus16x16.png" ToolTip="Zoom in"/>
                 </Button>
-                <ToggleButton Content="Show debug lines" Click="ShowDebugLines_Click" >
-                    
+                <ToggleButton ToolTip="Show debug lines" Click="ShowDebugLines_Click" >
+                    <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/debugLines16x16.png"/>
                 </ToggleButton>
             </ToolBar>
         </ToolBarTray>

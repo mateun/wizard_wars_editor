@@ -26,8 +26,9 @@ namespace WizardWarsEditor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private MapPanel mapHost = new MapPanel();
         private float g_Scale = 3;
+        private MapPanel mapPanel = null; 
+        
         private bool _showDebugLines = false;
         
         public string DebugInfo { get; set; }
@@ -45,15 +46,16 @@ namespace WizardWarsEditor
         public void NotifyPropertyChanged(string propName)
         {
             if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
         public MainWindow()
         {
             InitializeComponent();
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
-            mapHost.DrawScale = g_Scale;
-            this.DataContext = this;
+            mapPanel = new MapPanel(g_Scale, 10, 10);
+            mapPanel.DrawScale = g_Scale;
+
             CurrentLayer = "0";
             CurrentTile = "grass";
             ScrollOffset = "0/0";
@@ -80,7 +82,7 @@ namespace WizardWarsEditor
             TileListView.ItemsSource = LayerTiles;
             
           
-            MapCanvas.Children.Add(mapHost);
+            MapCanvas.Children.Add(mapPanel);
 
         }
 
@@ -98,8 +100,8 @@ namespace WizardWarsEditor
         private void ZoomPlus_Click(object sender, RoutedEventArgs e)
         {
             g_Scale++;
-            mapHost.DrawScale = g_Scale;
-            mapHost.RenderContent(g_Scale, _showDebugLines);
+            mapPanel.DrawScale = g_Scale;
+            mapPanel.RenderContent(_showDebugLines);
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
             
@@ -108,8 +110,8 @@ namespace WizardWarsEditor
         private void ZoomMinus_Click(object sender, RoutedEventArgs e)
         {
             g_Scale--;
-            mapHost.DrawScale = g_Scale;
-            mapHost.RenderContent(g_Scale, _showDebugLines);
+            mapPanel.DrawScale = g_Scale;
+            mapPanel.RenderContent(_showDebugLines);
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
 
@@ -118,7 +120,7 @@ namespace WizardWarsEditor
         private void ShowDebugLines_Click(object sender, RoutedEventArgs e)
         {
             _showDebugLines = !_showDebugLines;
-            mapHost.RenderContent(g_Scale, _showDebugLines);
+            mapPanel.RenderContent(_showDebugLines);
         }
     }
 }
