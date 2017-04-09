@@ -19,7 +19,7 @@ namespace WizardWarsEditor
 {
 
     
-    public class MyVisualHost : FrameworkElement
+    public class MapPanel : FrameworkElement
     {
         private VisualCollection _visuals;
         public float DrawScale { get; set; }
@@ -30,7 +30,7 @@ namespace WizardWarsEditor
         float s = 8;
 
 
-        public MyVisualHost() : base()
+        public MapPanel() : base()
         {
 
             
@@ -182,7 +182,7 @@ namespace WizardWarsEditor
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private MyVisualHost mapHost = new MyVisualHost();
+        private MapPanel mapHost = new MapPanel();
         private float g_Scale = 3;
 
         
