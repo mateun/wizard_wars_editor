@@ -22,16 +22,16 @@
                     <ComboBoxItem Content="Layer 1"/>
                     <ComboBoxItem Content="Layer 2"/>
                 </ComboBox>
-                <Button>
+                <Button Click="ScrollLeft_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/leftArrow16x16.png" ToolTip="Move map to the left"/>
                 </Button>
-                <Button>
+                <Button Click="ScrollRight_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/rightArrow16x16.png" ToolTip="Move map to the right"/>
                 </Button>
-                <Button>
+                <Button Click="ScrollUp_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/upArrow16x16.png" ToolTip="Move map up"/>
                 </Button>
-                <Button>
+                <Button Click="ScrollDown_Click">
                     <Image Source="C:/Users/martin/Documents/Visual Studio 2017/Projects/WizardWarsEditor/WizardWarsEditor/bin/Debug/assets/images/downArrow16x16.png" ToolTip="Move map down"/>
                 </Button>
                 <Button Click="ZoomMinus_Click">

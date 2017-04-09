@@ -123,6 +123,30 @@ namespace WizardWarsEditor
 
         }
 
+        private void ScrollLeft_Click(object sender, RoutedEventArgs e)
+        {
+            mapPanel.ReceiveScrollInput(ScrollInput.LEFT);
+            mapPanel.RenderContent();
+        }
+
+        private void ScrollRight_Click(object sender, RoutedEventArgs e)
+        {
+            mapPanel.ReceiveScrollInput(ScrollInput.RIGHT);
+            mapPanel.RenderContent();
+        }
+
+        private void ScrollUp_Click(object sender, RoutedEventArgs e)
+        {
+            mapPanel.ReceiveScrollInput(ScrollInput.UP);
+            mapPanel.RenderContent();
+        }
+
+        private void ScrollDown_Click(object sender, RoutedEventArgs e)
+        {
+            mapPanel.ReceiveScrollInput(ScrollInput.DOWN);
+            mapPanel.RenderContent();
+        }
+
         private void ShowDebugLines_Click(object sender, RoutedEventArgs e)
         {
             _showDebugLines = !_showDebugLines;
