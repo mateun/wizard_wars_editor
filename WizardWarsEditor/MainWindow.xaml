@@ -14,8 +14,6 @@
                 <Separator />
                 <MenuItem Header="_Exit"/>
             </MenuItem>
-            <MenuItem Header="DrawTest" Click="MenuItem_Click">
-            </MenuItem>
         </Menu>
         <ToolBarTray DockPanel.Dock="Top" AllowDrop="False">
             <ToolBar>

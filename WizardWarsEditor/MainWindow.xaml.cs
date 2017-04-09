@@ -184,9 +184,7 @@ namespace WizardWarsEditor
     {
         private MapPanel mapHost = new MapPanel();
         private float g_Scale = 3;
-
         
-
         public string DebugInfo { get; set; }
         public string CurrentLayer { get; set; }
         public string CurrentTile { get; set; }
@@ -244,13 +242,7 @@ namespace WizardWarsEditor
         {
 
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            DebugInfo = "Clicked on render test!";
-            this.NotifyPropertyChanged("DebugInfo");
-
-        }
+        
 
         private void ZoomPlus_Click(object sender, RoutedEventArgs e)
         {
