@@ -38,8 +38,7 @@ namespace WizardWarsEditor
         public string CurrentMapCoords { get; set; }
 
 
-        System.Collections.ObjectModel.ObservableCollection<lib.TileDescription> LayerTiles { get { return _layerTiles; }}
-        System.Collections.ObjectModel.ObservableCollection<lib.TileDescription> _layerTiles = new System.Collections.ObjectModel.ObservableCollection<lib.TileDescription>();
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -53,35 +52,24 @@ namespace WizardWarsEditor
         {
             InitializeComponent();
             GameMap gameMap = new GameMap(10, 10, 3);
+            
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
-            mapPanel = new MapPanel(g_Scale,gameMap);
+            
             
             CurrentLayer = "0";
             CurrentTile = "grass";
             ScrollOffset = "0/0";
             CurrentMapCoords = "0/0";
             lblMapPositionSelected.Text = "0/0";
-            
-            LayerTiles.Add(new TileDescription()
-            {
-                TileName = "Grass",
-                TileImageSource = Environment.CurrentDirectory + "/assets/images/grass16x16.png"
-            });
 
-            LayerTiles.Add(new TileDescription()
-            {
-                TileName = "Sand",
-                TileImageSource = Environment.CurrentDirectory + "/assets/images/sand32x32.png"
-            });
+            TileListPanel tileListPanel = new TileListPanel(TileListView);
+            gameMap.FillLayer(tileListPanel.FindTileByName("Grass"), 0);
 
-            LayerTiles.Add(new TileDescription()
-            {
-                TileName = "Water",
-                TileImageSource = Environment.CurrentDirectory + "/assets/images/water32x32.png"
-            });
-            TileListView.ItemsSource = LayerTiles;
-            
-          
+            // Test
+            gameMap.SetTileForLayer(tileListPanel.FindTileByName("Water"), 5, 5, 0);
+            // Test end
+
+            mapPanel = new MapPanel(g_Scale, gameMap, tileListPanel.LayerTiles);
             MapCanvas.Children.Add(mapPanel);
 
         }
