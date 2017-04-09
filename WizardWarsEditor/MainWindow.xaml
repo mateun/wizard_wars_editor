@@ -17,7 +17,7 @@
         </Menu>
         <ToolBarTray DockPanel.Dock="Top" AllowDrop="False">
             <ToolBar>
-                <ComboBox SelectedIndex="0">
+                <ComboBox SelectedIndex="0" >
                     <ComboBoxItem Content="Layer 0" />
                     <ComboBoxItem Content="Layer 1"/>
                     <ComboBoxItem Content="Layer 2"/>

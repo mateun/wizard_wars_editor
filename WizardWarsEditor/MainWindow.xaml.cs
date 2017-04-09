@@ -52,10 +52,10 @@ namespace WizardWarsEditor
         public MainWindow()
         {
             InitializeComponent();
+            GameMap gameMap = new GameMap(10, 10, 3);
             MapPanel.OnCellSelected += MapPanel_OnCellSelected;
-            mapPanel = new MapPanel(g_Scale, 10, 10);
-            mapPanel.DrawScale = g_Scale;
-
+            mapPanel = new MapPanel(g_Scale,gameMap);
+            
             CurrentLayer = "0";
             CurrentTile = "grass";
             ScrollOffset = "0/0";
