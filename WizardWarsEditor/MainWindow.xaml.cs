@@ -13,17 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WizardWarsEditor.lib;
 
 namespace WizardWarsEditor
 {
 
-    public class LayerTile
-    {
-        public string TileName { get; set; }
-        public string TileImageSource { get; set; }
-    }
-
-
+    
     public class MyVisualHost : FrameworkElement
     {
         private VisualCollection _visuals;
@@ -199,8 +194,8 @@ namespace WizardWarsEditor
         public string CurrentMapCoords { get; set; }
 
 
-        System.Collections.ObjectModel.ObservableCollection<LayerTile> LayerTiles { get { return _layerTiles; }}
-        System.Collections.ObjectModel.ObservableCollection<LayerTile> _layerTiles = new System.Collections.ObjectModel.ObservableCollection<LayerTile>();
+        System.Collections.ObjectModel.ObservableCollection<lib.TileDescription> LayerTiles { get { return _layerTiles; }}
+        System.Collections.ObjectModel.ObservableCollection<lib.TileDescription> _layerTiles = new System.Collections.ObjectModel.ObservableCollection<lib.TileDescription>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -221,19 +216,19 @@ namespace WizardWarsEditor
             CurrentMapCoords = "0/0";
             lblMapPositionSelected.Text = "0/0";
             
-            LayerTiles.Add(new LayerTile()
+            LayerTiles.Add(new TileDescription()
             {
                 TileName = "Grass",
                 TileImageSource = Environment.CurrentDirectory + "/assets/images/grass16x16.png"
             });
 
-            LayerTiles.Add(new LayerTile()
+            LayerTiles.Add(new TileDescription()
             {
                 TileName = "Sand",
                 TileImageSource = Environment.CurrentDirectory + "/assets/images/sand32x32.png"
             });
 
-            LayerTiles.Add(new LayerTile()
+            LayerTiles.Add(new TileDescription()
             {
                 TileName = "Water",
                 TileImageSource = Environment.CurrentDirectory + "/assets/images/water32x32.png"
