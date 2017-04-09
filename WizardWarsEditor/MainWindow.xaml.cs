@@ -101,7 +101,8 @@ namespace WizardWarsEditor
         {
             g_Scale++;
             mapPanel.DrawScale = g_Scale;
-            mapPanel.RenderContent(_showDebugLines);
+            mapPanel.ShowDebugLines = _showDebugLines;
+            mapPanel.RenderContent();
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
             
@@ -111,7 +112,8 @@ namespace WizardWarsEditor
         {
             g_Scale--;
             mapPanel.DrawScale = g_Scale;
-            mapPanel.RenderContent(_showDebugLines);
+            mapPanel.ShowDebugLines = _showDebugLines;
+            mapPanel.RenderContent();
             DebugInfo = "Set scale to " + g_Scale;
             this.NotifyPropertyChanged("DebugInfo");
 
@@ -120,7 +122,8 @@ namespace WizardWarsEditor
         private void ShowDebugLines_Click(object sender, RoutedEventArgs e)
         {
             _showDebugLines = !_showDebugLines;
-            mapPanel.RenderContent(_showDebugLines);
+            mapPanel.ShowDebugLines = _showDebugLines;
+            mapPanel.RenderContent();
         }
     }
 }
