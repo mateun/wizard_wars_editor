@@ -6,13 +6,27 @@ using System.Threading.Tasks;
 
 namespace WizardWarsEditor.lib
 {
+    [Serializable]
     public class GameMap
     {
+       
+        // TODO multidimensional arrays are not supported,
+        // so we can not make a simple xml serialization.
         List<TileDescription[,]> layers;
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public int NumberOfLayers
+        {
+            get { return numberOfLayers;  }
+            set { numberOfLayers = value;  }
+        }
         private int numberOfLayers;
+
+        public GameMap() :this(32, 32, 3)
+        {
+            
+        }
         
         public GameMap(int mapWidth, int mapHeight, int numberOfLayersParam)
         {
@@ -29,11 +43,7 @@ namespace WizardWarsEditor.lib
             }
             
         }
-
-        public int NumberOfLayers()
-        {
-            return numberOfLayers;
-        }
+        
 
         public void SetTileForLayer(TileDescription td, int x, int y, int layerIndex)
         {

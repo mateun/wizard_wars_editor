@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 using WizardWarsEditor.lib;
 
 namespace WizardWarsEditor
@@ -195,6 +197,17 @@ namespace WizardWarsEditor
         private void MapAreaGrid_MouseUp(object sender, MouseButtonEventArgs e)
         {
             mapPanel.MapMouseHandler(sender, e);
+        }
+
+        private void SaveMap_Click(object sender, RoutedEventArgs e)
+        {
+            System.Console.WriteLine("saving the map!");
+            FileStream fs = new FileStream(Environment.CurrentDirectory + "/maps/mymap.xml", FileMode.OpenOrCreate);
+            XmlSerializer xmlSer = new XmlSerializer(typeof(GameMap));
+            xmlSer.Serialize(fs, gameMap);
+            fs.Flush();
+            fs.Close();
+            fs.Dispose();
         }
     }
 }

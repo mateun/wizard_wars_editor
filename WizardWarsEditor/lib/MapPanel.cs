@@ -109,7 +109,7 @@ namespace WizardWarsEditor.lib
 
             // The idea here is to render only a specific window of the game map, not more than 20x20 cells.
             
-            for (int l = 0; l < gameMap.NumberOfLayers(); l++)
+            for (int l = 0; l < gameMap.NumberOfLayers; l++)
             {
                 for (int row = 0; row < 18; row++)
                 {
