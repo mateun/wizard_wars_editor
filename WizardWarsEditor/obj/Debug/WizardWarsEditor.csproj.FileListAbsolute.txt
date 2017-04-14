@@ -12,3 +12,5 @@ c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWar
 c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.csproj.GenerateResource.Cache
 c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.exe
 c:\users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\obj\Debug\WizardWarsEditor.pdb
+C:\Users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\bin\Debug\Newtonsoft.Json.dll
+C:\Users\martin\documents\visual studio 2017\Projects\WizardWarsEditor\WizardWarsEditor\bin\Debug\Newtonsoft.Json.xml

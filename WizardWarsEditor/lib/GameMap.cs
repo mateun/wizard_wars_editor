@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace WizardWarsEditor.lib
 {
-    [Serializable]
     public class GameMap
     {
        
@@ -15,6 +16,56 @@ namespace WizardWarsEditor.lib
         List<TileDescription[,]> layers;
         public int Width { get; set; }
         public int Height { get; set; }
+
+        public String ToJSONRepresentation()
+        {
+            StringBuilder sb = new StringBuilder();
+            JsonWriter jw = new JsonTextWriter(new StringWriter(sb));
+
+            jw.Formatting = Formatting.Indented;
+            jw.WriteStartObject();
+            jw.WritePropertyName("width");
+            jw.WriteValue(this.Width);
+            jw.WritePropertyName("height");
+            jw.WriteValue(this.Height);
+            jw.WritePropertyName("numberOfLayers");
+            jw.WriteValue(numberOfLayers);
+            jw.WritePropertyName("layers");
+            jw.WriteStartArray();
+            
+            for (int l = 0; l < numberOfLayers; l++)
+            {
+
+                jw.WriteStartObject();
+                jw.WritePropertyName("layer");
+                jw.WriteValue(l);
+                jw.WritePropertyName("tiles");
+                jw.WriteStartArray();
+                for (int x = 0; x < Width; x++)
+                {
+                    for (int y = 0; y < Height; y++)
+                    {
+                        jw.WriteStartObject();
+                        jw.WritePropertyName("x");
+                        jw.WriteValue(x);
+                        jw.WritePropertyName("y");
+                        jw.WriteValue(y);
+                        jw.WritePropertyName("tileName");
+                        jw.WriteValue(layers[0][x, y].TileName);
+                        jw.WriteEndObject();
+
+                    }
+                }
+                jw.WriteEndArray();
+                jw.WriteEndObject();
+
+            }
+
+            
+            jw.WriteEndObject();
+
+            return sb.ToString();
+        }
 
         public int NumberOfLayers
         {

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using WizardWarsEditor.lib;
+using Newtonsoft.Json;
 
 namespace WizardWarsEditor
 {
@@ -202,12 +203,23 @@ namespace WizardWarsEditor
         private void SaveMap_Click(object sender, RoutedEventArgs e)
         {
             System.Console.WriteLine("saving the map!");
-            FileStream fs = new FileStream(Environment.CurrentDirectory + "/maps/mymap.xml", FileMode.OpenOrCreate);
-            XmlSerializer xmlSer = new XmlSerializer(typeof(GameMap));
-            xmlSer.Serialize(fs, gameMap);
-            fs.Flush();
-            fs.Close();
-            fs.Dispose();
+            // XML serialization - not working with multidimensional arrays
+            //FileStream fs = new FileStream(Environment.CurrentDirectory + "/maps/mymap.xml", FileMode.OpenOrCreate);
+            //XmlSerializer xmlSer = new XmlSerializer(typeof(GameMap));
+            //xmlSer.Serialize(fs, gameMap);
+            //fs.Flush();
+            //fs.Close();
+            //fs.Dispose();
+
+            System.IO.Directory.CreateDirectory(Environment.CurrentDirectory + "/maps");
+
+            DateTime now = DateTime.Now;
+            StreamWriter fs = new StreamWriter(Environment.CurrentDirectory + "/maps/map_" + now.Year + "_" + now.Month + "_" + 
+                                                                                now.Day + "_" + now.Hour +"_" +
+                                                                                now.Minute + "_" + now.Second + ".json");
+            fs.Write(gameMap.ToJSONRepresentation());
+            System.Console.WriteLine("map saved!");
+            
         }
     }
 }
